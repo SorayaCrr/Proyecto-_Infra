@@ -20,6 +20,11 @@ DB_USER=root
 DB_PASSWORD=tu_password
 DB_NAME=abogados
 
+# Configura la base de datos MySQL:
+# - Crea una base de datos llamada abogados_db.
+# - Actualiza la configuración de la base de datos en bd/mysql.js con tus credenciales de MySQL (host, usuario, contraseña).
+# - Asegúrate de que las tablas requeridas (audiencias, casos, clientes) estén creadas.
+
 # Ejecutar servidor
 npm start
 ```

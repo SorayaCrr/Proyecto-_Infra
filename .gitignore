@@ -1,0 +1,26 @@
+# Archivos de Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+.terraform.tfstate.lock.info
+
+# Archivos de entorno y secrets
+.env
+.aws/
+secrets.auto.tfvars
+
+# Logs
+*.log
+terraform.log
+
+# Archivos del editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Sistema operativo
+.DS_Store
+Thumbs.db

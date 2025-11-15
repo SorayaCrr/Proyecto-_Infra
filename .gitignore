@@ -1,26 +1,64 @@
-# Archivos de Terraform
+# Archivos ignorados por Terraform
 .terraform/
 *.tfstate
 *.tfstate.*
+*.tfstate.backup
+*.terraform.tfstate.lock.info
+
+# Archivos de plan
+*.tfplan
+*.plan
+plan.out
+terraform.plan
+
+# Archivos de variables sensibles
 *.tfvars
 *.tfvars.json
-.terraform.tfstate.lock.info
+*.auto.tfvars
+*.auto.tfvars.json
 
-# Archivos de entorno y secrets
-.env
-.aws/
-secrets.auto.tfvars
+# Override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
 
-# Logs
-*.log
+# Archivos de providers
+.terraform.lock.hcl
+.terraform.lock.hcl.*
+.terraformrc
+
+# Logs de Terraform
 terraform.log
+*.log
 
-# Archivos del editor
+# Archivos temporales
+*.tmp
+*.temp
+.cache/
+
+# Archivos de IDE/Editor
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
 
-# Sistema operativo
+# Archivos de sistema operativo
 .DS_Store
 Thumbs.db
+desktop.ini
+
+# Archivos de backup
+backup/
+backups/
+*.backup
+
+# Archivos específicos del proyecto
+/terraform.tfvars          # No subir archivos con valores reales
+/secrets.tfvars            # Archivos con secrets
+/prod.tfvars               # Configuraciones de producción
+/staging.tfvars            # Configuraciones de staging
+
+# Módulos locales (opcional, si usas módulos de git)
+# modules/                  # Descomenta si quieres ignorar módulos locales

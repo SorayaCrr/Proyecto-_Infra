@@ -1,4 +1,4 @@
-# 1. VPC + Subred privada (2 AZ para alta disponibilidad)
+
 resource "aws_vpc" "main" {
   cidr_block           = "10.0.0.0/16"
   enable_dns_hostnames = true
@@ -25,7 +25,7 @@ resource "aws_subnet" "private_b" {
   tags = merge(var.tags, { Name = "private-b" })
 }
 
-# 2. Security Group para Lambdas (solo salida a endpoints)
+
 resource "aws_security_group" "lambda" {
   name        = "lambda-vpc-sg"
   vpc_id      = aws_vpc.main.id
@@ -35,13 +35,12 @@ resource "aws_security_group" "lambda" {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # Sale por los endpoints de interfaz
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   tags = var.tags
 }
 
-# 3. VPC Endpoints Gateway (gratis y sin internet)
 resource "aws_vpc_endpoint" "dynamodb" {
   vpc_id       = aws_vpc.main.id
   service_name = "com.amazonaws.us-east-1.dynamodb"
@@ -59,7 +58,6 @@ resource "aws_vpc_endpoint" "s3" {
   tags              = var.tags
 }
 
-# Política para que Lambdas accedan solo a sus buckets
 data "aws_iam_policy_document" "s3_endpoint" {
   statement {
     effect    = "Allow"
@@ -68,12 +66,11 @@ data "aws_iam_policy_document" "s3_endpoint" {
   }
 }
 
-# 4. VPC Endpoints de interfaz (requieren SG y subred)
 locals {
   interface_services = [
     "sns",
     "ses",
-    "execute-api",      # Para invocar otras Lambdas si usan API interna
+    "execute-api",   
     "logs",
     "monitoring"
   ]

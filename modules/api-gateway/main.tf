@@ -3,7 +3,7 @@ resource "aws_api_gateway_rest_api" "main" {
   description = "API para el Sistema de Gestión de Abogados"
 
   endpoint_configuration {
-    types =
+    types = ["REGIONAL"]
   }
 }
 
